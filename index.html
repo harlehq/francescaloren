@@ -430,24 +430,22 @@ padding-bottom: 10px;
     object-fit: contain;
   }
 
-  /* Sticky note: left-aligned, smaller, more space below image */
   .sticky-note {
     position: relative !important;
-    left: 20px !important;
+    left: 12px !important;
     transform: none !important;
     top: auto !important;
-    width: 70vw !important;
-    max-width: 280px !important;
-    height: 220px !important;
+    width: 92vw !important;
+    max-width: 360px !important;
+    height: 180px !important;
     margin: 200px 0 40px 0 !important;
   }
 
-  /* Enlarged = wider rectangle, not much taller */
   .sticky-note.enlarged {
-    width: 90vw !important;
-    max-width: 340px !important;
-    height: 260px !important;
-    left: 15px !important;
+    width: 95vw !important;
+    max-width: 380px !important;
+    height: 220px !important;
+    left: 10px !important;
     transform: none !important;
   }
 }
@@ -480,24 +478,25 @@ padding-bottom: 10px;
 @media screen and (max-width: 480px) {
   .sticky-note {
     top: auto !important;
-    left: 16px !important;
+    left: 10px !important;
     transform: none !important;
-    width: 75vw !important;
-    max-width: 260px !important;
-    height: 200px !important;
+    width: 94vw !important;
+    max-width: 340px !important;
+    height: 170px !important;
     margin: 220px 0 30px 0 !important;
   }
 
   .sticky-note.enlarged {
-    width: 92vw !important;
-    max-width: 320px !important;
-    height: 240px !important;
-    left: 12px !important;
+    width: 96vw !important;
+    max-width: 360px !important;
+    height: 210px !important;
+    left: 8px !important;
     transform: none !important;
   }
 
   .stickynote-content textarea {
     font-size: 14.5px;
+    white-space: nowrap;
   }
 
   .logo-link {
@@ -555,7 +554,7 @@ padding-bottom: 10px;
 </div>
 </div>
 <div class="stickynote-content windows-image-content" id="contentArea">
-<textarea id="noteText">If you're reading this, Francesca says "hello."</textarea>
+<textarea id="noteText">If you're reading this, Francesca says, "hello."</textarea>
 </div> 
 </div>
 
@@ -575,7 +574,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const infoLink = document.getElementById('infoLink');
   const infoItem = document.getElementById('infoItem');
 
-  // Click INFORMATION → toggle dropdown only (mobile + desktop)
   if (infoLink && infoItem) {
     infoLink.addEventListener('click', function (e) {
       e.preventDefault();
@@ -589,7 +587,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Mobile: tap EMAIL / LINKEDIN to show contact info (hover equivalent)
   const contactItems = document.querySelectorAll('.category-list li');
   contactItems.forEach(function (li) {
     li.addEventListener('touchstart', function (e) {
@@ -602,7 +599,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
   });
 
-  // Hide contact info when tapping outside the dropdown items on mobile
   document.addEventListener('touchstart', function (e) {
     if (window.innerWidth <= 768 && !e.target.closest('.category-list li')) {
       contactItems.forEach(function (li) {
@@ -611,7 +607,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }, { passive: true });
 
-  // Sticky Note Script
   const stickyWindow = document.getElementById('stickyWindow');
   const titleBar = document.getElementById('titleBar');
   const minBtn = document.getElementById('minBtn');
