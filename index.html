@@ -372,7 +372,7 @@ text-align: center;
 padding-bottom: 10px;
 }
 
-/* ==================== MEDIA QUERIES (moved to end so they override) ==================== */
+/* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: row;
@@ -404,12 +404,18 @@ padding-bottom: 10px;
 
   .dropdown {
     position: absolute;
-    width: 280px;
+    width: 260px;
     left: 0;
+    top: 100%;
   }
 
   .dropdown::before {
     display: none;
+  }
+
+  /* Show contact info by default when dropdown is open on mobile */
+  .dropdown .contact-info {
+    display: inline !important;
   }
 
   .image-container-1 {
@@ -497,14 +503,13 @@ padding-bottom: 10px;
 
 <nav class="navbar">
 <ul class="nav-links">
-<li class="nav-item">
-<a href="information.html" class="nav-link">INFORMATION</a>
-<div class="dropdown">
+<li class="nav-item" id="infoItem">
+<a href="#" class="nav-link" id="infoLink">INFORMATION</a>
+<div class="dropdown" id="infoDropdown">
 <div class="dropdown-content">
 <ul class="category-list">
 <li>EMAIL<span class="contact-info">fl@francescaloren.com</span></li>
-<li>LINKEDIN<span class="contact-info"><a href="https://www.linkedin.com/in/francescaloren" target="_blank">linkedin.com/in/francescaloren</a></span>
-</li>
+<li>LINKEDIN<span class="contact-info"><a href="https://www.linkedin.com/in/francescaloren" target="_blank">linkedin.com/in/francescaloren</a></span></li>
 </ul>
 </div>
 </div>
@@ -521,7 +526,7 @@ padding-bottom: 10px;
 <img class="image-1" src="images/image-1.jpg">
 </div>
 
-<!-- =============== STICKY NOTE (underneath the windows containers) =============== -->
+<!-- =============== STICKY NOTE =============== -->
 <div class="sticky-note windows-image-container" id="stickyWindow">
 <div class="title-bar" id="titleBar">
 <span class="title">Sticky Note</span>
@@ -545,90 +550,111 @@ padding-bottom: 10px;
 </footer>
 
 <script>
-// Show the gate immediately
 'use strict';
 document.documentElement.lang = navigator.language || navigator.userLanguage || 'en';
 
-// Sticky Note Script
+// Mobile: tap INFORMATION to toggle dropdown (no page navigation)
 document.addEventListener('DOMContentLoaded', function () {
-const stickyWindow = document.getElementById('stickyWindow');
-const titleBar = document.getElementById('titleBar');
-const minBtn = document.getElementById('minBtn');
-const maxBtn = document.getElementById('maxBtn');
-const closeBtn = document.getElementById('closeBtn');
+  const infoLink = document.getElementById('infoLink');
+  const infoDropdown = document.getElementById('infoDropdown');
+  const infoItem = document.getElementById('infoItem');
 
-let isMinimized = false;
-let isEnlarged = false;
-let originalStyles = {};
+  if (infoLink && infoDropdown) {
+    infoLink.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        const isOpen = infoDropdown.style.display === 'block';
+        infoDropdown.style.display = isOpen ? 'none' : 'block';
+      }
+    });
 
-function saveOriginalStyles() {
-originalStyles = {
-width: stickyWindow.style.width || getComputedStyle(stickyWindow).width,
-height: stickyWindow.style.height || getComputedStyle(stickyWindow).height,
-transform: stickyWindow.style.transform
-                };
-            }
+    // Close dropdown when tapping outside on mobile
+    document.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768 && !infoItem.contains(e.target)) {
+        infoDropdown.style.display = 'none';
+      }
+    });
+  }
 
-let isDragging = false;
-let offsetX, offsetY;
+  // Sticky Note Script
+  const stickyWindow = document.getElementById('stickyWindow');
+  const titleBar = document.getElementById('titleBar');
+  const minBtn = document.getElementById('minBtn');
+  const maxBtn = document.getElementById('maxBtn');
+  const closeBtn = document.getElementById('closeBtn');
 
-function startDrag(e) {
-if (e.target.tagName === 'BUTTON') return;
-isDragging = true;
-const rect = stickyWindow.getBoundingClientRect();
-const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-offsetX = clientX - rect.left;
-offsetY = clientY - rect.top;
-stickyWindow.style.transform = 'none';
-            }
+  let isMinimized = false;
+  let isEnlarged = false;
+  let originalStyles = {};
 
-function drag(e) {
-if (!isDragging) return;
-const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-stickyWindow.style.left = (clientX - offsetX) + 'px';
-stickyWindow.style.top = (clientY - offsetY) + 'px';
-            }
+  function saveOriginalStyles() {
+    originalStyles = {
+      width: stickyWindow.style.width || getComputedStyle(stickyWindow).width,
+      height: stickyWindow.style.height || getComputedStyle(stickyWindow).height,
+      transform: stickyWindow.style.transform
+    };
+  }
 
-titleBar.addEventListener('mousedown', startDrag);
-document.addEventListener('mousemove', drag);
-document.addEventListener('mouseup', () => isDragging = false);
+  let isDragging = false;
+  let offsetX, offsetY;
 
-titleBar.addEventListener('touchstart', startDrag, { passive: true });
-document.addEventListener('touchmove', drag, { passive: true });
-document.addEventListener('touchend', () => isDragging = false);
+  function startDrag(e) {
+    if (e.target.tagName === 'BUTTON') return;
+    isDragging = true;
+    const rect = stickyWindow.getBoundingClientRect();
+    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+    offsetX = clientX - rect.left;
+    offsetY = clientY - rect.top;
+    stickyWindow.style.transform = 'none';
+  }
 
-minBtn.addEventListener('click', () => {
-if (isMinimized) {
-stickyWindow.classList.remove('minimized');
-isMinimized = false;
-                } else {
-stickyWindow.classList.add('minimized');
-isMinimized = true;
-                }
-            });
+  function drag(e) {
+    if (!isDragging) return;
+    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+    stickyWindow.style.left = (clientX - offsetX) + 'px';
+    stickyWindow.style.top = (clientY - offsetY) + 'px';
+  }
 
-maxBtn.addEventListener('click', () => {
-if (isEnlarged) {
-stickyWindow.style.width = originalStyles.width;
-stickyWindow.style.height = originalStyles.height;
-stickyWindow.style.transform = originalStyles.transform;
-stickyWindow.classList.remove('enlarged');
-isEnlarged = false;
-                } else {
-saveOriginalStyles();
-stickyWindow.classList.add('enlarged');
-isEnlarged = true;
-                }
-            });
+  titleBar.addEventListener('mousedown', startDrag);
+  document.addEventListener('mousemove', drag);
+  document.addEventListener('mouseup', () => isDragging = false);
 
-closeBtn.addEventListener('click', () => {
-stickyWindow.style.display = 'none';
-            });
+  titleBar.addEventListener('touchstart', startDrag, { passive: true });
+  document.addEventListener('touchmove', drag, { passive: true });
+  document.addEventListener('touchend', () => isDragging = false);
 
-saveOriginalStyles();
-        });
+  minBtn.addEventListener('click', () => {
+    if (isMinimized) {
+      stickyWindow.classList.remove('minimized');
+      isMinimized = false;
+    } else {
+      stickyWindow.classList.add('minimized');
+      isMinimized = true;
+    }
+  });
+
+  maxBtn.addEventListener('click', () => {
+    if (isEnlarged) {
+      stickyWindow.style.width = originalStyles.width;
+      stickyWindow.style.height = originalStyles.height;
+      stickyWindow.style.transform = originalStyles.transform;
+      stickyWindow.classList.remove('enlarged');
+      isEnlarged = false;
+    } else {
+      saveOriginalStyles();
+      stickyWindow.classList.add('enlarged');
+      isEnlarged = true;
+    }
+  });
+
+  closeBtn.addEventListener('click', () => {
+    stickyWindow.style.display = 'none';
+  });
+
+  saveOriginalStyles();
+});
 </script>
 </body>
 
