@@ -154,7 +154,8 @@ font-weight: normal;
 font-size: 15px;
 }
 
-.category-list li:hover .contact-info {
+.category-list li:hover .contact-info,
+.category-list li.show-contact .contact-info {
 display: inline;
 }
 
@@ -553,20 +554,41 @@ document.addEventListener('DOMContentLoaded', function () {
   const infoLink = document.getElementById('infoLink');
   const infoItem = document.getElementById('infoItem');
 
-  // Click INFORMATION on both mobile and desktop → only toggle dropdown
+  // Click INFORMATION → toggle dropdown only (mobile + desktop)
   if (infoLink && infoItem) {
     infoLink.addEventListener('click', function (e) {
       e.preventDefault();
       infoItem.classList.toggle('open');
     });
 
-    // Close when clicking outside
     document.addEventListener('click', function (e) {
       if (!infoItem.contains(e.target)) {
         infoItem.classList.remove('open');
       }
     });
   }
+
+  // Mobile: tap EMAIL / LINKEDIN to show contact info (hover equivalent)
+  const contactItems = document.querySelectorAll('.category-list li');
+  contactItems.forEach(function (li) {
+    li.addEventListener('touchstart', function (e) {
+      if (window.innerWidth <= 768) {
+        contactItems.forEach(function (other) {
+          other.classList.remove('show-contact');
+        });
+        li.classList.add('show-contact');
+      }
+    }, { passive: true });
+  });
+
+  // Hide contact info when tapping outside the dropdown items on mobile
+  document.addEventListener('touchstart', function (e) {
+    if (window.innerWidth <= 768 && !e.target.closest('.category-list li')) {
+      contactItems.forEach(function (li) {
+        li.classList.remove('show-contact');
+      });
+    }
+  }, { passive: true });
 
   // Sticky Note Script
   const stickyWindow = document.getElementById('stickyWindow');
