@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +20,7 @@ color: #000;
 font-family: Arial, sans-serif;
 position: relative;
 z-index: 1001;
-        }
+}
 
 .nav-links {
 display: flex;
@@ -29,18 +28,18 @@ gap: 14px;
 list-style: none;
 margin: 0;
 padding: 0;
-        }
+}
 
 .nav-links a {
 color: #000;
 text-decoration: none;
 font-size: 20px;
 text-transform: uppercase;
-        }
+}
 
 .nav-links a:hover {
 color: #666;
-        }
+}
 
 .logo-container {
 color: black;
@@ -50,7 +49,7 @@ position: absolute;
 left: 50%;
 transform: translateX(-50%);
 z-index: 1002;
-        }
+}
 
 .logo-link {
 color: #000;
@@ -58,19 +57,19 @@ font-size: 36px;
 font-weight: bold;
 text-decoration: none;
 font-style: italic;
-        }
+}
 
 .logo-link:hover {
 color: #666;
-        }
+}
 
 .nav-item {
 position: relative;
-        }
+}
 
 .nav-link {
 cursor: pointer;
-        }
+}
 
 .dropdown {
 display: none;
@@ -86,11 +85,11 @@ z-index: 1000;
 border-radius: 10px;
 padding: 20px;
 margin-top: 0;
-        }
+}
 
 .nav-item:hover>.dropdown {
 display: block;
-        }
+}
 
 .dropdown::before {
 content: '';
@@ -101,104 +100,42 @@ transform: translateX(-50%);
 border-left: 10px solid transparent;
 border-right: 10px solid transparent;
 border-bottom: 10px solid #fff;
-        }
+}
 
 .dropdown-content {
 display: flex;
 flex-direction: column;
-        }
+}
 
 .category-list,
 .sub-list {
 list-style: none;
 padding: 0;
 margin-bottom: 20px;
-        }
+}
 
 .category-list li,
 .sub-list li {
 margin-bottom: 10px;
-        }
+}
 
 .category-list a,
 .sub-list a {
 color: #000;
 text-decoration: none;
 display: block;
-        }
+}
 
 .product-images {
 display: flex;
 flex-direction: column;
 gap: 10px;
-        }
+}
 
 .product-images img {
 width: 100%;
 height: auto;
-        }
-
-@media (max-width: 768px) {
-.navbar {
-flex-direction: column;
-align-items: center;
-padding: 12px 15px;
-            }
-
-.nav-links {
-flex-direction: column;
-align-items: center;
-width: 100%;
-            }
-
-.logo-container {
-position: static;
-transform: none;
-margin-bottom: 8px;
-            }
-
-.dropdown {
-position: static;
-width: 100%;
-left: 0;
-            }
-
-.dropdown::before {
-display: none;
-            }
-
-.logo-link {
-font-size: 22px;
-            }
-
-.nav-links a {
-font-size: 15px;
-            }
-
-.image-container-1 {
-width: calc(100% - 24px);
-height: auto;
-margin-left: 12px;
-margin-right: 12px;
-max-width: 100%;
-            }
-
-.image-1 {
-width: 100%;
-height: auto;
-object-fit: contain;
-            }
-
-.sticky-note {
-position: relative !important;
-left: 50% !important;
-transform: translateX(-50%) !important;
-top: auto !important;
-width: 90vw;
-height: 320px;
-margin: 20px auto;
-            }
-        }
+}
 
 .category-list li {
 margin-bottom: 12px;
@@ -207,34 +144,31 @@ align-items: center;
 gap: 12px;
 font-size: 16px;
 text-transform: uppercase;
-        }
+}
 
 .contact-info {
 display: none;
 text-transform: none;
 font-weight: normal;
 font-size: 15px;
-        }
+}
 
 .category-list li:hover .contact-info {
 display: inline;
-        }
+}
 
-.contact-info a {
-color: #000;
-text-decoration: underline;
-        }
 .contact-info a {
 color: #000;
 text-decoration: underline;
 text-transform: none !important;
-        }
+}
+
 .product {
 border: 1px solid #ccc;
 padding: 10px;
 margin: 10px;
 display: inline-block;
-        }
+}
 
 .image-container-2 {
 margin-top: 40px;
@@ -246,7 +180,7 @@ display: grid;
 position: relative;
 z-index: 1;
 overflow: visible;
-        }
+}
 
 .image-2 {
 width: 100%;
@@ -254,7 +188,7 @@ height: 100%;
 object-fit: cover;
 display: block;
 z-index: 2;
-        }
+}
 
 .image-container-1 {
 margin-top: 10px;
@@ -268,7 +202,7 @@ display: grid;
 position: relative;
 z-index: 1;
 overflow: visible;
-        }
+}
 
 .image-1 {
 width: 100%;
@@ -277,12 +211,12 @@ object-fit: cover;
 display: block;
 z-index: 2;
 border: 2px solid black;
-        }
+}
 
 body {
 position: relative;
 padding-bottom: 0px;
-        }
+}
 
 /* ==================== STICKY NOTE STYLES ==================== */
 .sticky-note {
@@ -302,7 +236,7 @@ z-index: 9999;
 overflow: hidden;
 font-family: Arial, sans-serif;
 transition: width 0.25s ease, height 0.25s ease, transform 0.25s ease;
-        }
+}
 
 .stickynote-content {
 padding: 10px;
@@ -310,7 +244,7 @@ height: calc(100% - 25px);
 background: #fff59d;
 display: flex;
 flex-direction: column;
-        }
+}
 
 .stickynote-content textarea {
 width: 100%;
@@ -323,23 +257,23 @@ line-height: 1.5;
 resize: none;
 font-family: Arial, sans-serif;
 color: black;
-        }
+}
 
 .minimized .stickynote-content {
 display: none;
-        }
+}
 
 .minimized {
 height: 25px !important;
 overflow: hidden;
-        }
+}
 
 .enlarged {
 width: 820px !important;
 height: 720px !important;
 z-index: 10000;
 transform: translateX(-165%) !important;
-        }
+}
 
 .title-bar {
 background: linear-gradient(to right, #000080, #1084d0);
@@ -350,17 +284,17 @@ justify-content: space-between;
 align-items: center;
 user-select: none;
 height: 25px;
-        }
+}
 
 .title {
 font-weight: bold;
 font-size: 12px;
-        }
+}
 
 .buttons {
 display: flex;
 gap: 2px;
-        }
+}
 
 .btn {
 width: 16px;
@@ -377,7 +311,7 @@ align-items: center;
 cursor: pointer;
 position: relative;
 font-size: 0;
-        }
+}
 
 .btn:active {
 border-top: 1px solid #808080;
@@ -385,7 +319,7 @@ border-left: 1px solid #808080;
 border-bottom: 1px solid #ffffff;
 border-right: 1px solid #ffffff;
 background-color: #c0c0c0;
-        }
+}
 
 .minimize-btn::before {
 content: '';
@@ -396,7 +330,7 @@ transform: translateX(-50%);
 width: 8px;
 height: 2px;
 background-color: #000;
-        }
+}
 
 .maximize-btn::before {
 content: '';
@@ -408,7 +342,7 @@ width: 8px;
 height: 8px;
 border: 1px solid #000;
 border-top: 2px solid #000;
-        }
+}
 
 .close-btn::before,
 .close-btn::after {
@@ -419,69 +353,15 @@ left: 50%;
 width: 10px;
 height: 2px;
 background-color: #000;
-        }
+}
 .close-btn::before { transform: translate(-50%, -50%) rotate(45deg); }
-.close-btn::after { transform: translate(-50%, -50%) rotate(-45deg); } 
-
-@media screen and (max-width: 1024px) {
-.sticky-note {
-width: 460px;
-height: 380px;
-            }
-        }
-
-@media screen and (max-width: 1500px) {
-.sticky-note {
-top: 300px !important;
-margin-top: 20px !important;
-margin-bottom: 20px;
-left: 50% !important;
-transform: translateX(-80%) !important;
-width: 60vw;
-height: 280px;
-            }
-
-.sticky-note.enlarged {
-width: 75vw !important;
-height: 350px !important;
-transform: translateX(-55%) !important;
-            }
-        }
-
-@media screen and (max-width: 480px) {
-.sticky-note {
-top: auto !important;
-left: 50% !important;
-transform: translateX(-50%) !important;
-width: 92vw;
-height: 280px;
-margin: 15px auto;
-            }
-
-.stickynote-content textarea {
-font-size: 14.5px;
-            }
-
-.logo-link {
-font-size: 18px;
-            }
-
-.nav-links a {
-font-size: 14px;
-            }
-
-.image-container-1 {
-width: calc(100% - 16px);
-margin-left: 8px;
-margin-right: 8px;
-            }
-        }
+.close-btn::after { transform: translate(-50%, -50%) rotate(-45deg); }
 
 footer {
 position: static;
 bottom: 0;
 width: 100%;
-        }
+}
 
 .copyright_text {
 font-size: 20px;
@@ -490,7 +370,126 @@ cursor: pointer;
 align-items: center;
 text-align: center;
 padding-bottom: 10px;
-        }
+}
+
+/* ==================== MEDIA QUERIES (moved to end so they override) ==================== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 12px 15px;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  .logo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0;
+  }
+
+  .logo-link {
+    font-size: 18px;
+  }
+
+  .dropdown {
+    position: absolute;
+    width: 280px;
+    left: 0;
+  }
+
+  .dropdown::before {
+    display: none;
+  }
+
+  .image-container-1 {
+    width: calc(100% - 24px);
+    height: auto;
+    margin-left: 12px;
+    margin-right: 12px;
+    max-width: 100%;
+  }
+
+  .image-1 {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .sticky-note {
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: auto !important;
+    width: 90vw;
+    height: 320px;
+    margin: 20px auto;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .sticky-note {
+    width: 460px;
+    height: 380px;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .sticky-note {
+    top: 300px !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px;
+    left: 50% !important;
+    transform: translateX(-80%) !important;
+    width: 60vw;
+    height: 280px;
+  }
+
+  .sticky-note.enlarged {
+    width: 75vw !important;
+    height: 350px !important;
+    transform: translateX(-55%) !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sticky-note {
+    top: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 92vw;
+    height: 280px;
+    margin: 15px auto;
+  }
+
+  .stickynote-content textarea {
+    font-size: 14.5px;
+  }
+
+  .logo-link {
+    font-size: 16px;
+  }
+
+  .nav-links a {
+    font-size: 10px;
+  }
+
+  .image-container-1 {
+    width: calc(100% - 16px);
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
 </style>
 </head>
 
